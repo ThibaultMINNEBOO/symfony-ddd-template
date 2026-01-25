@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\App\Auth;
+namespace App\Tests\Auth;
 
 use App\Infrastructure\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
