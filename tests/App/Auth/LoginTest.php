@@ -36,6 +36,10 @@ class LoginTest extends WebTestCase
         $client->submit($form);
 
         $this->assertResponseRedirects('/');
+        $token = $this->getContainer()->get('security.token_storage')->getToken();
+
+        $this->assertNotNull($token);
+        $this->assertEquals('root@example.com', $token->getUserIdentifier());
     }
 
     public function testUserWithBadCredentialsCannotLogin(): void
