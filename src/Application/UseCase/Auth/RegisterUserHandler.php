@@ -6,16 +6,8 @@ use App\Application\Command\RegisterUserCommand;
 use App\Domain\Entity\User;
 use App\Domain\Event\UserRegistered;
 use App\Domain\Repository\UserRepositoryInterface;
-use App\Infrastructure\Security\AppAuthenticator;
-use App\Infrastructure\Security\EmailVerifier;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegisterUserHandler
 {

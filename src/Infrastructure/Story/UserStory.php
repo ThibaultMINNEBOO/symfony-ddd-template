@@ -13,7 +13,7 @@ final class UserStory extends Story
         UserFactory::createOne([
             'email' => 'root@example.com',
             'password' => 'rootpassword',
-            'roles' => [Role::ADMIN->value]
+            'roles' => [Role::ADMIN->value],
         ]);
         UserFactory::createMany(10);
     }

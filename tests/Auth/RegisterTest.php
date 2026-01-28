@@ -10,7 +10,8 @@ use Zenstruck\Foundry\Test\ResetDatabase;
 
 class RegisterTest extends WebTestCase
 {
-    use ResetDatabase, Factories;
+    use ResetDatabase;
+    use Factories;
 
     public function testUserCanRegister(): void
     {
@@ -48,7 +49,7 @@ class RegisterTest extends WebTestCase
 
         UserFactory::createOne([
             'email' => 'root@example.com',
-            'password' => 'testpassword'
+            'password' => 'testpassword',
         ]);
 
         $crawler = $client->request('GET', '/register');
@@ -91,7 +92,6 @@ class RegisterTest extends WebTestCase
 
     public function testUserCanVerifyMail(): void
     {
-
         $client = static::createClient();
         $crawler = $client->request('GET', '/register');
 

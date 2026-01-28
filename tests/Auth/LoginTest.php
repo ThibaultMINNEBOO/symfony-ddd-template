@@ -6,11 +6,13 @@ use App\Infrastructure\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
+
 use function Symfony\Component\String\s;
 
 class LoginTest extends WebTestCase
 {
-    use ResetDatabase, Factories;
+    use ResetDatabase;
+    use Factories;
 
     public function testUserCanLogin(): void
     {
@@ -18,7 +20,7 @@ class LoginTest extends WebTestCase
 
         UserFactory::createOne([
             'email' => 'root@example.com',
-            'password' => 'test'
+            'password' => 'test',
         ]);
 
         $crawler = $client->request('GET', '/login');
@@ -73,7 +75,7 @@ class LoginTest extends WebTestCase
 
         $user = UserFactory::createOne([
             'email' => 'root@example.com',
-            'password' => 'test'
+            'password' => 'test',
         ]);
 
         $client->loginUser($user);
