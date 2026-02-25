@@ -26,9 +26,8 @@ class LoginTest extends WebTestCase
         $crawler = $client->request('GET', '/login');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Please sign in');
 
-        $buttonCrawlerNode = $crawler->selectButton('Sign in');
+        $buttonCrawlerNode = $crawler->selectButton('Login');
 
         $form = $buttonCrawlerNode->form();
 
@@ -51,9 +50,8 @@ class LoginTest extends WebTestCase
         $crawler = $client->request('GET', '/login');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Please sign in');
 
-        $buttonCrawlerNode = $crawler->selectButton('Sign in');
+        $buttonCrawlerNode = $crawler->selectButton('Login');
 
         $form = $buttonCrawlerNode->form();
 
@@ -66,7 +64,7 @@ class LoginTest extends WebTestCase
 
         $client->followRedirect();
 
-        $this->assertAnySelectorTextContains('div.alert.alert-danger', s('Invalid credentials.')->ignoreCase());
+        $this->assertAnySelectorTextContains('div.alert.alert-error', s('Invalid credentials.')->ignoreCase());
     }
 
     public function testWhenAlreadyLoggedInUserAccessLoginPageThenRedirectToHome(): void
