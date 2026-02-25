@@ -8,10 +8,9 @@ echo "date.timezone = '$TZ'" > "$PHP_INI_DIR/php.ini"
 composer install
 
 php bin/console c:c
-php bin/console d:m:m --no-interaction
-php bin/console d:f:l --no-interaction
+composer db
 php bin/console importmap:install
-php bin/console tailwind:build
+php bin/console tailwind:build --watch -v &
 
 # Start frankenphp
 

@@ -6,6 +6,7 @@ use App\Application\Command\RegisterUserCommand;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
@@ -17,13 +18,20 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('password', PasswordType::class, [
-                'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
-                'constraints' => [
-                    new NotBlank(message: 'Please enter a password'),
-                    new Length(min: 6, max: 4096, minMessage: 'Your password should be at least {{ limit }} characters'),
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'options' => [
+                    'attr' => ['autocomplete' => 'new-password'],
                 ],
+                'first_options' => [
+                    'label' => 'Password',
+                    'constraints' => [
+                        new NotBlank(message: 'Please enter a password'),
+                        new Length(min: 6, max: 4096, minMessage: 'Your password should be at least {{ limit }} characters'),
+                    ],
+                ],
+                'second_options' => ['label' => 'Repeat Password'],
+                'invalid_message' => 'The password fields must match.',
             ])
         ;
     }

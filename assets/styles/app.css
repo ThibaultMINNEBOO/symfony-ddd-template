@@ -1,2 +1,6 @@
-@import "tailwindcss";
-@plugin "../vendor/daisyui/daisyui.index.js"
+@import "tailwindcss" source(none);
+@plugin "../vendor/daisyui/daisyui.index.js";
+
+@source "../../templates/**/*.html.twig";
+@source "../../assets/**/*.js";
+@source not "../../assets/tailwind";

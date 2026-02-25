@@ -26,7 +26,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
-        $form['registration_form[password]'] = 'testpassword';
+        $form['registration_form[password][first]'] = 'testpassword';
+        $form['registration_form[password][second]'] = 'testpassword';
 
         $client->submit($form);
 
@@ -62,7 +63,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
-        $form['registration_form[password]'] = 'anotherpassword';
+        $form['registration_form[password][first]'] = 'anotherpassword';
+        $form['registration_form[password][second]'] = 'anotherpassword';
 
         $client->submit($form);
 
@@ -83,11 +85,35 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
-        $form['registration_form[password]'] = '123';
+        $form['registration_form[password][first]'] = '123';
+        $form['registration_form[password][second]'] = '123';
 
         $client->submit($form);
 
         $this->assertSelectorTextContains('li', 'Your password should be at least 6 characters');
+    }
+
+    public function testUserNeedsToReenterCorrectPassword(): void
+    {
+        $client = static::createClient();
+
+        $crawler = $client->request('GET', '/register');
+
+        $this->assertResponseIsSuccessful();
+
+        $this->assertSelectorExists('form');
+
+        $buttonCrawlerNode = $crawler->selectButton('Register');
+
+        $form = $buttonCrawlerNode->form();
+
+        $form['registration_form[email]'] = 'root@example.com';
+        $form['registration_form[password][first]'] = 'testpassword';
+        $form['registration_form[password][second]'] = 'differentpassword';
+
+        $client->submit($form);
+
+        $this->assertSelectorTextContains('li', 'The password fields must match.');
     }
 
     public function testUserCanVerifyMail(): void
@@ -103,7 +129,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
-        $form['registration_form[password]'] = 'testpassword';
+        $form['registration_form[password][first]'] = 'testpassword';
+        $form['registration_form[password][second]'] = 'testpassword';
 
         $client->submit($form);
         $this->assertQueuedEmailCount(1);
