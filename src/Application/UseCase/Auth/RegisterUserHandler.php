@@ -23,6 +23,8 @@ class RegisterUserHandler
         $hasher = $this->passwordHasherFactory->getPasswordHasher(User::class);
 
         $user = User::create(
+            $command->firstName,
+            $command->lastName,
             $command->email,
             $hasher->hash($command->password)
         );

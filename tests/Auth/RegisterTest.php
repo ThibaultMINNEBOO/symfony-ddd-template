@@ -26,6 +26,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
+        $form['registration_form[firstName]'] = 'Root';
+        $form['registration_form[lastName]'] = 'User';
         $form['registration_form[password][first]'] = 'testpassword';
         $form['registration_form[password][second]'] = 'testpassword';
 
@@ -63,6 +65,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
+        $form['registration_form[firstName]'] = 'Root';
+        $form['registration_form[lastName]'] = 'User';
         $form['registration_form[password][first]'] = 'anotherpassword';
         $form['registration_form[password][second]'] = 'anotherpassword';
 
@@ -85,6 +89,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
+        $form['registration_form[firstName]'] = 'Root';
+        $form['registration_form[lastName]'] = 'User';
         $form['registration_form[password][first]'] = '123';
         $form['registration_form[password][second]'] = '123';
 
@@ -108,6 +114,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
+        $form['registration_form[firstName]'] = 'Root';
+        $form['registration_form[lastName]'] = 'User';
         $form['registration_form[password][first]'] = 'testpassword';
         $form['registration_form[password][second]'] = 'differentpassword';
 
@@ -129,6 +137,8 @@ class RegisterTest extends WebTestCase
         $form = $buttonCrawlerNode->form();
 
         $form['registration_form[email]'] = 'root@example.com';
+        $form['registration_form[firstName]'] = 'Root';
+        $form['registration_form[lastName]'] = 'User';
         $form['registration_form[password][first]'] = 'testpassword';
         $form['registration_form[password][second]'] = 'testpassword';
 

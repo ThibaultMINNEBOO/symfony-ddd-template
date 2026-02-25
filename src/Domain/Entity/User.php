@@ -47,9 +47,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
-    public static function create(string $email, string $hashedPassword, array $roles = []): User
+    public static function create(string $firstName, string $lastName, string $email, string $hashedPassword, array $roles = []): User
     {
         $user = new self();
+        $user->firstName = $firstName;
+        $user->lastName = $lastName;
         $user->email = $email;
         $user->password = $hashedPassword;
         $user->roles = $roles;

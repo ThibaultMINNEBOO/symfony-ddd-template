@@ -7,30 +7,50 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
-
     {{ form_errors(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email, {
-            label: 'Email',
-            attr: {
-                class: 'input'
-            }
-        }) }}
-        {{ form_row(registrationForm.password.first, {
-            label: 'Mot de passe',
-            attr: {
-                class: 'input'
-            }
-        }) }}
-        {{ form_row(registrationForm.password.second, {
-            label: 'Confirmer le mot de passe',
-            attr: {
-                class: 'input'
-            }
-        }) }}
+    <div class="flex flex-col items-center justify-center min-h-screen">
+        {{ form_start(registrationForm) }}
+        <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
+            <legend class="fieldset-legend">Inscription</legend>
+            {{ form_row(registrationForm.firstName, {
+                label: 'Prénom',
+                error_item_class: 'text-error',
+                attr: {
+                    class: 'input'
+                }
+            }) }}
+            {{ form_row(registrationForm.lastName, {
+                label: 'Nom',
+                error_item_class: 'text-error',
+                attr: {
+                    class: 'input'
+                }
+            }) }}
+            {{ form_row(registrationForm.email, {
+                label: 'Email',
+                error_item_class: 'text-error',
+                attr: {
+                    class: 'input'
+                }
+            }) }}
+            {{ form_row(registrationForm.password.first, {
+                label: 'Mot de passe',
+                error_item_class: 'text-error',
+                attr: {
+                    class: 'input'
+                }
+            }) }}
+            {{ form_row(registrationForm.password.second, {
+                label: 'Confirmer le mot de passe',
+                error_item_class: 'text-error',
+                attr: {
+                    class: 'input'
+                }
+            }) }}
+            <button type="submit" class="btn">Register</button>
+        </fieldset>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
