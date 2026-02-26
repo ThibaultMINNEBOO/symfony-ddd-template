@@ -27,3 +27,7 @@
 ###< friendsofphp/php-cs-fixer ###
 
 docker/data
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

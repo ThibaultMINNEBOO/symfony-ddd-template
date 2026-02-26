@@ -47,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    /**
+     * @param list<string> $roles
+     */
     public static function create(string $firstName, string $lastName, string $email, string $hashedPassword, array $roles = []): User
     {
         $user = new self();
@@ -74,6 +77,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->email = $email;
     }
 
+    /**
+     * @param list<string> $roles
+     */
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
@@ -147,6 +153,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
+
         return $this;
     }
 
@@ -158,6 +165,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
+
         return $this;
     }
 }

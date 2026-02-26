@@ -147,7 +147,7 @@ class RegisterTest extends WebTestCase
         $message = $this->getMailerMessage(0);
 
         $this->assertEmailHeaderSame($message, 'To', 'root@example.com');
-        $body = $message->getHtmlBody() ?? $message->getBody();
+        $body = $message?->getHtmlBody() ?? $message?->getBody();
 
         preg_match('/https?:\/\/[^"\']+\/verify\/email\?[^"\']+/', $body, $matches);
 
